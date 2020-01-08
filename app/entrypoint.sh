@@ -134,12 +134,6 @@ function check_default_cert_key {
 source /app/functions.sh
 
 if [[ "$*" == "/bin/bash /app/start.sh" ]]; then
-    acmev2_re='https://acme-.*v02\.api\.letsencrypt\.org/directory'
-    if [[ "${ACME_CA_URI:-}" =~ $acmev2_re ]]; then
-        echo "Error: ACME v2 API is not yet supported by simp_le."
-        echo "See https://github.com/zenhack/simp_le/issues/101"
-        exit 1
-    fi
     check_docker_socket
     if [[ -z "$(get_nginx_proxy_container)" ]]; then
         echo "Error: can't get nginx-proxy container ID !" >&2
